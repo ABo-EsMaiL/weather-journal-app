@@ -1,9 +1,9 @@
 /* Global Variables */
-let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
-let apiKey = ',&appid=d725d4d8e5129e02ef33773a1e315a84';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+const apiKey = ',&appid=d725d4d8e5129e02ef33773a1e315a84&units=imperial';
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // let newDate = d.toDateString();
 
 // EVENT LISTENER TO ADD FUNCTION TO BUTTON
@@ -65,7 +65,7 @@ const updateUI = async () => {
         const allData = await request.json();
         document.getElementById('state').innerHTML = `State: ${allData[0].state}`;
         document.getElementById('date').innerHTML = `Date: ${allData[0].date}`;
-        document.getElementById('temp').innerHTML = `Temperature: ${allData[0].temp}`;
+        document.getElementById('temp').innerHTML = `Temperature: ${Math.round(allData[0].temp)+ ' degrees'}`;
         document.getElementById('content').innerHTML = `Feeling: ${allData[0].content}`;
     }catch(error){
         console.log("error", error);
