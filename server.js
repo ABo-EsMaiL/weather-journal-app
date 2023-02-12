@@ -43,6 +43,7 @@ app.post('/add',addData)
 function addData(req,res){
     console.log(req.body)
     newEntry={
+        state:req.body.state,
         date:req.body.date,
         temp:req.body.temp,
         content:req.body.content

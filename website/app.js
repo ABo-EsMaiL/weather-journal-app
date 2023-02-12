@@ -18,7 +18,7 @@ function performAction(e){
     .then(function(data){
         console.log(data);
         // Add data
-        postData('/add', {date:newDate, temp:data.main.temp , content:feeling});
+        postData('/add', {state:data.name, date:newDate, temp:data.main.temp , content:feeling});
         // We can do this because of Async!
         updateUI()
     })
@@ -63,6 +63,7 @@ const updateUI = async () => {
     const request = await fetch('/all');
     try{
         const allData = await request.json();
+        document.getElementById('state').innerHTML = `State: ${allData[0].state}`;
         document.getElementById('date').innerHTML = `Date: ${allData[0].date}`;
         document.getElementById('temp').innerHTML = `Temperature: ${allData[0].temp}`;
         document.getElementById('content').innerHTML = `Feeling: ${allData[0].content}`;
